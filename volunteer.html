@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>굿네이버스</title>
+    <link href="css/sub_style_vol.css" type="text/css" rel="stylesheet">
+    <script src="javascript/jquery-1.12.3.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            mobile_menu();
+        });
+
+        function mobile_menu() {
+            /* 변수 선언 */
+            var $menu = null;
+            var $left_gnb = null; // 영역 전체
+            var $depth1_wrap = null;
+            var $depth1 = null;
+            var $depth1_btn = null;
+
+            /* 시작 함수 */
+            function start() {
+                init();
+                init_event();
+            }
+            /* 변수 초기화 함수 */
+            function init() {
+                $menu = $('.icon_menu');
+                $left_gnb = $('.left_gnbWrap'); // 영역 전체
+                $depth1_wrap = $('.left_gnb>li');
+                $depth1 = $depth1_wrap.children('ul');
+                $depth1_btn = $depth1_wrap.children('a');
+            }
+            /* 이벤트 함수 */
+            function init_event() {
+
+                /* 모바일 메뉴 버튼 클릭했을때 모바일 메뉴영역 나오게 하기 */
+                $menu.click(function(event) {
+                    event.preventDefault();
+                    $left_gnb.addClass('on');
+                });
+
+                /* x버튼 눌렀을때 모바일 메뉴 닫기 */
+                $('.close').click(function(event) {
+                    event.preventDefault();
+
+                    $left_gnb.removeClass('on');
+
+                    // x버튼 누르면 시간차 약간두고 소메뉴 닫히게 하기
+                    setTimeout(function() {
+                        $depth1_btn.removeClass('on');
+                        $depth1.slideUp();
+                    }, 300)
+                });
+
+                /* depth1의 각메뉴 클릭시 depth2 나오게 하기 */
+                $depth1_btn.click(function(event) {
+                    event.preventDefault();
+                    var $this = $(this);
+                    var $this_ul = $this.siblings('ul');
+
+                    var check = $this.hasClass('on');
+                    if (check) {
+                        $this.removeClass('on');
+                        $this_ul.stop(true, true).slideUp();
+                    } else {
+                        $depth1_btn.removeClass('on');
+                        $depth1.stop().slideUp();
+                        $this.addClass('on');
+                        $this_ul.stop(true, true).slideDown();
+                    }
+                });
+
+                /* 디바이스 크기 변경시 모바일 메뉴영역 숨기기 */
+                $(window).resize(function() {
+                    $left_gnb.removeClass('on');
+                });
+            }
+
+            start(); // 시작 호출
+        }
+
+
+        /* 메뉴 & 서브메뉴*/
+        jQuery(document).ready(function() {
+
+
+            $('.menu>ul>li').mouseover(function() {
+                $(this).find('.submenu').stop().slideDown(500);
+            }).mouseout(function() {
+                $(this).find('.submenu').stop().slideUp(500);
+            });
+
+        });
+
+
+        /* header 마우스오버시 로고,로그인 이미지 변경 */
+        $(function() {
+
+            $('#header').mouseenter(function() {
+                $('.logoimg').attr('src', 'img/logo02color.png');
+            });
+            $('#header').mouseleave(function() {
+                $('.logoimg').attr('src', 'img/logo01white.png');
+            });
+
+            $('#header').mouseenter(function() {
+                $('.loginimg').attr('src', 'img/icon_login02.png');
+            });
+            $('#header').mouseleave(function() {
+                $('.loginimg').attr('src', 'img/icon_login01.png');
+            });
+
+        });
+
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+
+        <!-- 상단 고정 메뉴 -->
+        <header id="header">
+
+            <div class="logo">
+                <a href="index.html"><img src="img/logo01white.png" alt="로고" class="logoimg"></a>
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li class="menu1">
+                        <a href="introduction.html">굿네이버스</a>
+                        <div class="submenu">
+                            <ul class="sub_ul">
+                                <li><a href="introduction.html">굿네이버스는</a></li>
+                                <li><a href="#">투명경영</a></li>
+                                <li><a href="#">연혁</a></li>
+                                <li><a href="#">조직현황</a></li>
+                                <li><a href="#">국내/해외지부</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">사업안내</a>
+                        <div class="submenu">
+                            <ul class="sub_ul">
+                                <li><a href="#">국내복지사업</a></li>
+                                <li><a href="#">사회개발교육사업</a></li>
+                                <li><a href="#">국제구호개발사업</a></li>
+                                <li><a href="#">인도적지원사업</a></li>
+                                <li><a href="#">대북지원사업</a></li>
+                                <li><a href="#">아동권리연구소</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">후원안내</a>
+                        <div class="submenu">
+                            <ul class="sub_ul">
+                                <li><a href="#">정기후원</a></li>
+                                <li><a href="#">일시후원</a></li>
+                                <li><a href="#">해외결연후원</a></li>
+                                <li><a href="#">사업후원</a></li>
+                                <li><a href="#">기업·단체후원</a></li>
+                                <li><a href="#">고액·유산기부</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="volunteer.html">캠페인·참여</a>
+                        <div class="submenu">
+                            <ul class="sub_ul">
+                                <li><a href="volunteer.html">해외자원봉사단</a></li>
+                                <li><a href="#">캠페인 애프터</a></li>
+                                <li><a href="#">좋은이웃모임 참여</a></li>
+                                <li><a href="#">이벤트</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="notice.html">소식</a>
+                        <div class="submenu">
+                            <ul class="sub_ul">
+                                <li><a href="notice.html">공지사항</a></li>
+                                <li><a href="#">언론보도</a></li>
+                                <li><a href="#">굿스토리</a></li>
+                                <li><a href="#">나눔영상</a></li>
+                                <li><a href="#">소식지</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="btns">
+                <div class="btn_log">
+                    <a href="#"><img src="img/icon_login01.png" alt="로그인" class="loginimg"></a>
+                </div>
+                <div class="btn_do"><a href="#">후원하기</a></div>
+            </div>
+
+            <!-- 모바일 메뉴 -->
+            <!-- 클릭 되기전 상태-->
+            <div class="icon_menu">
+                <a href="#"></a>
+            </div>
+
+            <!-- 클릭했을 때 나오는 내용 -->
+            <nav class="left_gnbWrap">
+                <a href="#" class="close">close</a>
+                <ul class="left_gnb">
+                    <li>
+                        <a href="introduction.html">굿네이버스</a>
+                        <ul>
+                            <li><a href="introduction.html">굿네이버스는</a></li>
+                            <li><a href="#">투명경영</a></li>
+                            <li><a href="#">연혁</a></li>
+                            <li><a href="#">조직현황</a></li>
+                            <li><a href="#">국내/해외지부</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">사업안내</a>
+                        <ul>
+                            <li><a href="#">국내복지사업</a></li>
+                            <li><a href="#">사회개발교육사업</a></li>
+                            <li><a href="#">국제구호개발사업</a></li>
+                            <li><a href="#">인도적지원사업</a></li>
+                            <li><a href="#">대북지원사업</a></li>
+                            <li><a href="#">아동권리연구소</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">후원안내</a>
+                        <ul>
+                            <li><a href="#">정기후원</a></li>
+                            <li><a href="#">일시후원</a></li>
+                            <li><a href="#">해외결연후원</a></li>
+                            <li><a href="#">사업후원</a></li>
+                            <li><a href="#">기업·단체후원</a></li>
+                            <li><a href="#">고액·유산기부</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="volunteer.html">캠페인·참여</a>
+                        <ul>
+                            <li><a href="volunteer.html">해외자원봉사단</a></li>
+                            <li><a href="#">캠페인 애프터</a></li>
+                            <li><a href="#">좋은이웃모임 참여</a></li>
+                            <li><a href="#">이벤트</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="notice.html">소식</a>
+                        <ul>
+                            <li><a href="notice.html">공지사항</a></li>
+                            <li><a href="#">언론보도</a></li>
+                            <li><a href="#">굿스토리</a></li>
+                            <li><a href="#">나눔영상</a></li>
+                            <li><a href="#">소식지</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+        </header>
+
+        <!-- 메인이미지 -->
+        <article id="sub_mainimg">
+            <div class="sub_title">
+                <h1>캠페인·참여</h1>
+                <p>HOME&nbsp;&nbsp;&#62;&nbsp;&nbsp;캠페인·참여&nbsp;&nbsp;&#62;&nbsp;&nbsp;해외자원봉사단</p>
+            </div>
+        </article>
+
+
+        <section class="contents">
+            <!-- 굿네이버스 해외자원봉사단 제목 -->
+            <div class="set">
+                <div>
+                    <div class="sub_intro">
+                        <h1 class="hidden">해외자원봉사단</h1>
+                        <div class="line_deco"></div>
+                        <h2><span>GNVol</span>&nbsp;굿네이버스 해외자원봉사단</h2>
+                        <p>
+                            굿네이버스는 빈곤과 재난으로 고통 받는 이웃들과 함께하며<br>
+                            나눔을 실천하는 자원봉사자들을 파견하고 있습니다.
+                        </p>
+                        <ul class="menu_tab">
+                            <li><a href="#">GNVol 소개</a></li>
+                            <li><a href="#">현장에서 온 소식</a></li>
+                            <li><a href="#">공지사항</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- 서브 콘텐츠 메인사진 -->
+                    <div class="sub_img"></div>
+
+
+                    <!-- GNVol 소개-->
+                    <div class="gnv">
+                        <div class="gnv">
+                            <h1 class="hidden">GNVol 소개</h1>
+                            <div class="sub_inner">
+                                <div class="left_box">
+                                    <span>GNVol</span>
+                                    <p>소개</p>
+                                </div>
+                                <div class="gnv_right">
+                                    <p class="text01">
+                                        굿네이버스 해외자원봉사단<span>(GNVol, Good Neighbors Volunteers)</span>은 굿네이버스의 해외지부에서 1년 이상 장기자원봉사단원으로 활동하는 제도로서 개발도상국의 아동 및 지역주민들과 함께 하며 나눔을 실천하고 있습니다.
+                                    </p>
+                                    <p class="text02">
+                                        1994년 자이레 고마 지역에 르완다 난민 긴급구호를 위해 굿네이버스 최초의 해외자원봉사활동이 이루어졌습니다. 그 이후로 매년 30~40명의 장기자원봉사자들을 파견하고 있으며, 현재(2019년 12월 기준)까지 해외 37개국에 총 599명의 봉사단원을 파견하였습니다. 지속 가능한 개발을 위해 적정기술을 보급하고, 소득증대사업, 사회적기업개발 사업을 진행하여 지역의 자립도를 높이기 위해 힘쓰고 있습니다.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- GNVol소개 뒷 배경 / 민트컬러 -->
+
+
+
+            <!-- 활동분야 -->
+            <div class="active">
+                <h1 class="hidden">활동분야</h1>
+                <div class="sub_inner">
+                    <div class="left_box">활동분야</div>
+                    <div class="active_right">
+                        <p>사회복지, 일반행정, 교육(분야별 교육), 지역개발, 농림수산, 마케팅, 보건 등의 분야에서 전문적인 봉사활동을 수행합니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 귀국단원 -->
+            <div class="crew">
+                <h1 class="hidden">귀국단원</h1>
+                <div class="sub_inner">
+                    <div class="left_box">귀국단원</div>
+                    <div class="crew_right">
+                        <p>활동을 마치고 귀국한 봉사단원들은 귀국단원 평가회 및 환영회를 통해 1년 동안의 GNVol 활동을 보고하고 평가합니다. GNVol 활동 이후에도 보다 전문적인 국제개발협력 사업 수행을 원하는 귀국단원들에게 굿네이버스의 해외파견직 제도인 현장활동가로 지원을 독려하고 있습니다</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 파견제도 -->
+            <div class="send">
+                <h1 class="hidden">파견제도</h1>
+                <div class="sub_inner">
+                    <div class="left_box">파견제도</div>
+                    <div class="send_right">
+                        <div class="line"></div>
+
+
+                        <!-- 파견소속 -->
+                        <div class="belong">
+                            <div class="table_title">파견소속</div>
+                            <div class="belong_con">
+                                <ul>
+                                    <li class="good_charity">
+                                        <h3>굿네이버스 해외자원봉사단</h3>
+                                        <div><img src="img/icon_good.png" alt="굿네이버스"></div>
+                                        <h4>
+                                            굿네이버스 해외자원봉사단은 굿네이버스에서 파견에 필요한 비용을 지원하여 굿네이버스 해외사업국으로 봉사단원을 파견하는 제도입니다.
+                                        </h4>
+                                        <p class="recruit">
+                                            모집 및 파견 : 10월, 11월 모집 / 차년도 2월 파견
+                                        </p>
+                                        <p class="support">
+                                            파견비용지원 :<br>
+                                            왕복항공권(1년 활동완료 기준), 주거지제공, 활동비, 현지정착비, 현지어교육비, 해외장기체류 보험, 비자발급비
+                                        </p>
+                                        <p class="date">파견기간 : 1년(12개월)</p>
+                                    </li>
+                                    <li class="world_charity">
+                                        <h3>월드프렌즈 NGO봉사단</h3>
+                                        <div><img src="img/icon_world.png" alt="월드프렌즈"></div>
+                                        <h4>
+                                            월드프렌즈 NGO봉사단은 한국국제협력단(KOICA)과 국제개발협력민간협의회(KCOC)의 지원을 받아 굿네이버스 해외사업국으로 봉사단원을 파견하는 제도입니다.
+                                        </h4>
+                                        <p class="recruit">
+                                            모집 및 파견 : 10월, 11월 모집 / 차년도 2월 파견
+                                        </p>
+                                        <p class="support">
+                                            파견비용지원 :<br>
+                                            왕복항공권(1년 활동완료 기준), 주거비제공, 활동비, 현지정착비, 현지어교육비, 해외장기체류보험, 비자발급비, 커리어적립금
+                                        </p>
+                                        <p class="date">파견기간 : 1년(12개월)</p>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+
+                        <!-- 지원자격 -->
+                        <div class="qualification">
+                            <div class="table_title">지원자격</div>
+                            <div class="qualification_con">
+                                <ul>
+                                    <li>봉사정신과 책임감을 함양한 만 20세 이상인 자</li>
+                                    <li>심신이 건강하여 해외 활동 수행에 적합한 자</li>
+                                    <li>파견 전 모든 교육프로그램에 참석 가능한 자</li>
+                                    <li>남자는 군복무를 필했거나 면제된 자</li>
+                                    <li>군 미필자의 경우 파견 기간 동안 활동이 보장되는 자</li>
+                                    <li>1년 간의 활동을 성실히 완수할 수 있는 자</li>
+                                    <li>범죄 경력이 없는 자</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 선발과정 -->
+                        <div class="select">
+                            <div class="table_title">선발과정</div>
+                            <div class="select_con">
+                                <ul>
+                                    <li>
+                                        <div>
+                                            <h4>01</h4>
+                                            <p>모집공고</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <h4>02</h4>
+                                            <p>서류전형</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <h4>03</h4>
+                                            <p>면접전형</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <h4>04</h4>
+                                            <p>최종합격</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="select_line"></div>
+                            </div>
+                        </div>
+
+                        <!-- 교육 및 파견과정 -->
+                        <div class="education">
+                            <div class="table_title">교육 및<br>파견과정</div>
+                            <div class="edu_con">
+                                <img src="img/procedure.png" alt="파견과정" class="pc_educon">
+                                <img src="img/sub_mo_edu.png" alt="파견과정" class="mo_educon">
+                                <ul>
+                                    <li>
+                                        <p>* GNVol 1년 활동종료 후 굿네이버스 지원 시 우대함</p>
+                                    </li>
+                                    <li><img src="img/icon_logo.png" alt="로고아이콘"></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="line_bottom"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 관심자 등록 -->
+            <div class="interest">
+                <h1 class="hidden">관심자 등록</h1>
+                <div class="sub_inner">
+                    <div class="left_box">관심자 등록</div>
+                    <div class="interest_right">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    공고 확인하러가기 >
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    관심자 등록하러가기 >
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!--
+            <div class="go_top">
+                <a href="#"><img src="img/icon_gotop.png" alt="top"></a>
+            </div>
+            -->
+
+        </section>
+
+
+
+        <footer id="footer">
+            <div class="top_footer">
+                <div class="inner">
+                    <ul>
+                        <li>NOTICE</li>
+                        <li>
+                            <a href="#">
+                                굿네이버스 개인정보처리방침 개정 안내
+                                <span> 2020.08.25 </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="go_btn">
+                        <a href="#"><img src="img/icon_arrow.png" alt="바로가기"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom_footer">
+                <div class="inner">
+                    <div class="info">
+                        <ul class="f_menu">
+                            <li><a href="#">인재채용</a></li>
+                            <li><a href="#">후원·제휴문의</a></li>
+                            <li><a href="#">사이트맵</a></li>
+                            <li><a href="#">이용약관</a></li>
+                            <li><a href="#">개인정보처리방침</a></li>
+                            <li><a href="#">이메일무단수집거부</a></li>
+                        </ul>
+                        <ul class="address">
+                            <li>서울 영등포구 버드나루로 13 굿네이버스</li>
+                            <li>COPYRIGHT © GNI. ALL RIGHT RESERVED.</li>
+                        </ul>
+                    </div>
+                    <div class="site">
+                        <div class="family">
+                            <select>
+                                <option>&nbsp;&nbsp;Family Site</option>
+                                <option>&nbsp;&nbsp;좋은이웃가게</option>
+                                <option>&nbsp;&nbsp;소소나눔프로젝트</option>
+                                <option>&nbsp;&nbsp;기부스토어</option>
+                                <option>&nbsp;&nbsp;인성스쿨</option>
+                            </select>
+                        </div>
+                        <ul class="sns">
+                            <li>
+                                <a href="https://www.facebook.com/goodneighbors" target="_blank"><img src="img/icon_sns01.png" alt="페이스북"></a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/goodneighbors/" target="_blank"><img src="img/icon_sns02.png" alt="인스타그램"></a>
+                            </li>
+                            <li>
+                                <a href="https://www.youtube.com/user/GoodNeighborskr/featured" target="_blank"><img src="img/icon_sns03.png" alt="유투브"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+    </div>
+
+</body>
+
+</html>
