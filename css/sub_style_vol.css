@@ -126,7 +126,7 @@ a {
 }
 
 .menu > ul > li > a {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
     color: #ffffff;
     font-weight: bold;
     line-height: 80px;
@@ -183,7 +183,7 @@ a {
 }
 
 /* 서브메뉴 */
-.submenu {
+.submenu{
     display: none;
     position: absolute;
     width: 100%;
@@ -193,8 +193,8 @@ a {
     background-color: #142130;
 }
 
-.sub_ul {
-    width: 100%;
+.sub_ul{
+    width:100%;
     margin: 0 auto;
     text-align: center;
 }
@@ -206,14 +206,14 @@ a {
 
 .sub_ul > li > a {
     color: #ffffff;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     line-height: 53px;
     font-weight: 100;
 }
 
-.sub_ul > li:hover > a {
+.sub_ul > li:hover > a{
     color: #bac597;
-
+    
 }
 
 
@@ -227,7 +227,6 @@ a {
 .left_gnbWrap {
     display: none;
 }
-
 
 
 /*서브 메인이미지*/
@@ -1088,7 +1087,7 @@ interest_right > ul:after {
     .logo {
         width: 150px;
         margin-left: 2%;
-        margin-top: 14px;
+        margin-top: 15px;
     }
 
     .logo > a > img {
@@ -1098,15 +1097,17 @@ interest_right > ul:after {
     .menu {
         height: 60px;
     }
+    
+    .submenu{
+        top: 60px;
+    }
 
     .menu > ul {
         line-height: 60px;
     }
-
-    .menu > ul > li {
-        padding: 0 15px;
+    .menu > ul > li{
+        padding: 0 14px;
     }
-
     .menu > ul > li > a {
         font-size: 1.5rem;
         line-height: 60px;
@@ -1132,6 +1133,7 @@ interest_right > ul:after {
         line-height: 60px;
         font-size: 1.7rem;
     }
+
 
     .sub_title > h1 {
         font-size: 4.5rem;

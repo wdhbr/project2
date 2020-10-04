@@ -1,10 +1,117 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>굿네이버스</title>
     <link href="css/sub_style_intro.css" type="text/css" rel="stylesheet">
+    <script src="javascript/jquery-1.12.3.js"></script>
+    <script>
+        jQuery(document).ready(function() {
+            /* 메뉴 & 서브메뉴*/
+            $('.menu>ul>li').mouseover(function() {
+                $(this).find('.submenu').stop().slideDown(500);
+            }).mouseout(function() {
+                $(this).find('.submenu').stop().slideUp(500);
+            });
+        });
+
+        /* header 마우스오버시 로고,로그인 이미지 변경 */
+        $(function() {
+
+            $('#header').mouseenter(function() {
+                $('.logoimg').attr('src', 'img/logo02color.png');
+            });
+            $('#header').mouseleave(function() {
+                $('.logoimg').attr('src', 'img/logo01white.png');
+            });
+
+            $('#header').mouseenter(function() {
+                $('.loginimg').attr('src', 'img/icon_login02.png');
+            });
+            $('#header').mouseleave(function() {
+                $('.loginimg').attr('src', 'img/icon_login01.png');
+            });
+
+
+            /* 모바일메뉴 아이콘 */
+            $(document).ready(function() {
+                mobile_menu();
+            });
+
+            function mobile_menu() {
+                /* 변수 선언 */
+                var $menu = null;
+                var $left_gnb = null; // 영역 전체
+                var $depth1_wrap = null;
+                var $depth1 = null;
+                var $depth1_btn = null;
+
+                /* 시작 함수 */
+                function start() {
+                    init();
+                    init_event();
+                }
+                /* 변수 초기화 함수 */
+                function init() {
+                    $menu = $('.icon_menu');
+                    $left_gnb = $('.left_gnbWrap'); // 영역 전체
+                    $depth1_wrap = $('.left_gnb>li');
+                    $depth1 = $depth1_wrap.children('ul');
+                    $depth1_btn = $depth1_wrap.children('a');
+                }
+                /* 이벤트 함수 */
+                function init_event() {
+
+                    /* 모바일 메뉴 버튼 클릭했을때 모바일 메뉴영역 나오게 하기 */
+                    $menu.click(function(event) {
+                        event.preventDefault();
+                        $left_gnb.addClass('on');
+                    });
+
+                    /* x버튼 눌렀을때 모바일 메뉴 닫기 */
+                    $('.close').click(function(event) {
+                        event.preventDefault();
+
+                        $left_gnb.removeClass('on');
+
+                        // x버튼 누르면 시간차 약간두고 소메뉴 닫히게 하기
+                        setTimeout(function() {
+                            $depth1_btn.removeClass('on');
+                            $depth1.slideUp();
+                        }, 300)
+                    });
+
+                    /* depth1의 각메뉴 클릭시 depth2 나오게 하기 */
+                    $depth1_btn.click(function(event) {
+                        event.preventDefault();
+                        var $this = $(this);
+                        var $this_ul = $this.siblings('ul');
+
+                        var check = $this.hasClass('on');
+                        if (check) {
+                            $this.removeClass('on');
+                            $this_ul.stop(true, true).slideUp();
+                        } else {
+                            $depth1_btn.removeClass('on');
+                            $depth1.stop().slideUp();
+                            $this.addClass('on');
+                            $this_ul.stop(true, true).slideDown();
+                        }
+                    });
+
+                    /* 디바이스 크기 변경시 모바일 메뉴영역 숨기기 */
+                    $(window).resize(function() {
+                        $left_gnb.removeClass('on');
+                    });
+                }
+
+                start(); // 시작 호출
+            }
+
+        });
+    </script>
 </head>
 
 <body>
@@ -13,26 +120,143 @@
         <!-- 상단 고정 메뉴 -->
         <header id="header">
             <div class="logo">
-                <a href="index.html"><img src="img/logo01white.png" alt="로고"></a>
+                <a href="index.html"><img src="img/logo01white.png" alt="로고" class="logoimg"></a>
             </div>
             <nav class="menu">
                 <ul>
-                    <li><a href="introduction.html">굿네이버스</a></li>
-                    <li><a href="#">사업안내</a></li>
-                    <li><a href="#">후원안내</a></li>
-                    <li><a href="volunteer.html">캠페인·참여</a></li>
-                    <li><a href="notice.html">소식</a></li>
+                    <li class="menu1">
+                        <a href="introduction.html">굿네이버스</a>
+                        <div class="submenu">
+                            <ul class="sub_ul">
+                                <li><a href="introduction.html">굿네이버스는</a></li>
+                                <li><a href="#">투명경영</a></li>
+                                <li><a href="#">연혁</a></li>
+                                <li><a href="#">조직현황</a></li>
+                                <li><a href="#">국내/해외지부</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">사업안내</a>
+                        <div class="submenu">
+                            <ul class="sub_ul">
+                                <li><a href="#">국내복지사업</a></li>
+                                <li><a href="#">사회개발교육사업</a></li>
+                                <li><a href="#">국제구호개발사업</a></li>
+                                <li><a href="#">인도적지원사업</a></li>
+                                <li><a href="#">대북지원사업</a></li>
+                                <li><a href="#">아동권리연구소</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">후원안내</a>
+                        <div class="submenu">
+                            <ul class="sub_ul">
+                                <li><a href="#">정기후원</a></li>
+                                <li><a href="#">일시후원</a></li>
+                                <li><a href="#">해외결연후원</a></li>
+                                <li><a href="#">사업후원</a></li>
+                                <li><a href="#">기업·단체후원</a></li>
+                                <li><a href="#">고액·유산기부</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="volunteer.html">캠페인·참여</a>
+                        <div class="submenu">
+                            <ul class="sub_ul">
+                                <li><a href="volunteer.html">해외자원봉사단</a></li>
+                                <li><a href="#">캠페인 애프터</a></li>
+                                <li><a href="#">좋은이웃모임 참여</a></li>
+                                <li><a href="#">이벤트</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="notice.html">소식</a>
+                        <div class="submenu">
+                            <ul class="sub_ul">
+                                <li><a href="notice.html">공지사항</a></li>
+                                <li><a href="#">언론보도</a></li>
+                                <li><a href="#">굿스토리</a></li>
+                                <li><a href="#">나눔영상</a></li>
+                                <li><a href="#">소식지</a></li>
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
             </nav>
             <div class="btns">
                 <div class="btn_log">
-                    <a href="#"><img src="img/icon_login01.png" alt="로그인"></a>
+                    <a href="#"><img src="img/icon_login01.png" alt="로그인" class="loginimg"></a>
                 </div>
                 <div class="btn_do"><a href="#">후원하기</a></div>
             </div>
+
+            <!-- 모바일 메뉴 -->
+            <!-- 클릭 되기전 상태-->
             <div class="icon_menu">
-                <a  href="#"><img src="img/mo_menu.png" alt="메뉴아이콘"></a>
+                <a href="#"></a>
             </div>
+
+            <!-- 클릭했을 때 나오는 내용 -->
+            <nav class="left_gnbWrap">
+                <a href="#" class="close">close</a>
+                <ul class="left_gnb">
+                    <li>
+                        <a href="introduction.html">굿네이버스</a>
+                        <ul>
+                            <li><a href="introduction.html">굿네이버스는</a></li>
+                            <li><a href="#">투명경영</a></li>
+                            <li><a href="#">연혁</a></li>
+                            <li><a href="#">조직현황</a></li>
+                            <li><a href="#">국내/해외지부</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">사업안내</a>
+                        <ul>
+                            <li><a href="#">국내복지사업</a></li>
+                            <li><a href="#">사회개발교육사업</a></li>
+                            <li><a href="#">국제구호개발사업</a></li>
+                            <li><a href="#">인도적지원사업</a></li>
+                            <li><a href="#">대북지원사업</a></li>
+                            <li><a href="#">아동권리연구소</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">후원안내</a>
+                        <ul>
+                            <li><a href="#">정기후원</a></li>
+                            <li><a href="#">일시후원</a></li>
+                            <li><a href="#">해외결연후원</a></li>
+                            <li><a href="#">사업후원</a></li>
+                            <li><a href="#">기업·단체후원</a></li>
+                            <li><a href="#">고액·유산기부</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="volunteer.html">캠페인·참여</a>
+                        <ul>
+                            <li><a href="volunteer.html">해외자원봉사단</a></li>
+                            <li><a href="#">캠페인 애프터</a></li>
+                            <li><a href="#">좋은이웃모임 참여</a></li>
+                            <li><a href="#">이벤트</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="notice.html">소식</a>
+                        <ul>
+                            <li><a href="notice.html">공지사항</a></li>
+                            <li><a href="#">언론보도</a></li>
+                            <li><a href="#">굿스토리</a></li>
+                            <li><a href="#">나눔영상</a></li>
+                            <li><a href="#">소식지</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
         </header>
 
         <!-- 메인이미지 -->
@@ -43,7 +267,7 @@
             </div>
         </article>
 
-        
+
         <section class="contents">
             <!-- 소개 -->
             <div class="sub_intro">
@@ -75,7 +299,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <!-- 소개 -->
             <div class="business">
                 <h1 class="hidden">주요 사업</h1>
@@ -116,24 +340,13 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="background"></div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-        </section>   
-  
-       
+
+
+        </section>
+
+
         <!-- 하단영역 -->
         <footer id="footer">
             <div class="top_footer">
@@ -155,7 +368,7 @@
             <div class="bottom_footer">
                 <div class="inner">
                     <div class="info">
-                        <ul>
+                        <ul class="f_menu">
                             <li><a href="#">인재채용</a></li>
                             <li><a href="#">후원·제휴문의</a></li>
                             <li><a href="#">사이트맵</a></li>
@@ -163,8 +376,10 @@
                             <li><a href="#">개인정보처리방침</a></li>
                             <li><a href="#">이메일무단수집거부</a></li>
                         </ul>
-                        <p>서울 영등포구 버드나루로 13 굿네이버스</p>
-                        <span>COPYRIGHT © GNI. ALL RIGHT RESERVED.</span>
+                        <ul class="address">
+                            <li>서울 영등포구 버드나루로 13 굿네이버스</li>
+                            <li>COPYRIGHT © GNI. ALL RIGHT RESERVED.</li>
+                        </ul>
                     </div>
                     <div class="site">
                         <div class="family">
@@ -191,7 +406,6 @@
                 </div>
             </div>
         </footer>
-    
+
     </div>
-</body>
-</html>
+</body></html>
