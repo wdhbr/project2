@@ -2,22 +2,18 @@
     font-family: 'NotoSansCJKkr-Regular';
     src: url("font/NotoSansCJKkr-Regular.otf") format("opentype");
 }
-
 @font-face {
     font-family: 'NotoSansCJKkr-DemiLight';
     src: url("font/NotoSansCJKkr-DemiLight.otf") format("opentype");
 }
-
 @font-face {
     font-family: 'arial';
     src: url("font/arial.ttf") format("truetype");
 }
-
 @font-face {
     font-family: 'NotoSerifCJKkr-Regular';
     src: url("font/NotoSerifCJKkr-Regular.otf") format("opentype");
 }
-
 
 * {
     margin: 0;
@@ -103,6 +99,8 @@ a {
     /* 80px */
     margin-top: 21px;
     /*1.25 %*/
+    position: relative;
+    z-index: 2;
 }
 
 .menu {
@@ -164,6 +162,16 @@ a {
 .btn_log > a > img:hover {
     transform: rotateY(180deg);
     transition: all 0.4s;
+}
+
+.btn_log{
+    position: relative;
+    z-index: 2;
+}
+
+.btn_do{
+    position: relative;
+    z-index: 2;
 }
 
 .btn_do > a {
@@ -237,6 +245,7 @@ a {
     background-image: url(../img/sub_mainimg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .sub_title {
@@ -343,6 +352,7 @@ a {
     background-image: url(../img/subimg01.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center center;
     margin: 0 auto;
     margin-top: 5%;
 }
@@ -402,13 +412,27 @@ a {
     margin-top: 30px;
 }
 
-/* GNVol소개 뒷 배경 */
-.subbg {
+
+/* GNVol소개 뒷 배경 / 민트컬러 */
+.set {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 50px;
+}
+
+.set > div {
+    position: relative;
+    z-index: 2
+}
+
+.set:after {
+    display: block;
+    content: "";
     position: absolute;
     width: 100%;
-    height: 600px;
+    height: 40%;
     background-color: #dadece;
-    top: 1600px;
+    bottom: 0px;
     left: 0;
     z-index: 1;
 }
@@ -1426,7 +1450,7 @@ interest_right > ul:after {
     }
 
     .gnv_right {
-        width: 560px;
+        width: 90%;
         margin: 0 auto;
         float: none;
         margin-top: 30px;
@@ -1465,7 +1489,7 @@ interest_right > ul:after {
 
     .active_right {
         float: none;
-        width: 560px;
+        width: 90%; 
         margin: 0 auto;
     }
 
@@ -1485,7 +1509,7 @@ interest_right > ul:after {
 
     .crew_right {
         float: none;
-        width: 560px;
+        width: 90%;
         margin: 0 auto;
     }
 
@@ -1505,7 +1529,7 @@ interest_right > ul:after {
 
     .send_right {
         float: none;
-        width: 560px;
+        width: 90%;
         margin: 0 auto;
         padding-top: 35px;
     }
@@ -1515,7 +1539,7 @@ interest_right > ul:after {
     }
 
     .belong {
-        height: 770px;
+        height: 810px;
         padding-bottom: 35px;
         border-bottom: 1px solid #cccccc;
     }
@@ -1550,6 +1574,9 @@ interest_right > ul:after {
     .support,
     .date {
         font-size: 1.4rem;
+    }
+    
+    .date{
     }
 
     .world_charity {
@@ -1732,6 +1759,27 @@ interest_right > ul:after {
     }
 }
 
+@media (max-width:615px) {
+    .select{
+        height: 200px;
+    }
+    .select_con{
+        width: 60%;
+        float: left;
+    }
+    .select_con > ul > li{
+        margin-right: 35px;
+        margin-bottom: 20px;
+    }
+    
+    .select_con > ul > li:nth-child(2){
+        margin-right: 0;
+    }
+    .select_line{
+        display: none;
+    }
+}
+
 
 @media (max-width:550px){
     .top_footer > .inner > ul > li:last-child > a > span {
@@ -1750,5 +1798,11 @@ interest_right > ul:after {
 
     .address > li:nth-child(2) {
         font-size: 1.4rem;
+    }
+}
+
+@media (max-width:430px) {
+    .select{
+        height: 440px;
     }
 }

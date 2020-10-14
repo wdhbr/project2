@@ -2,22 +2,18 @@
     font-family: 'NotoSansCJKkr-Regular';
     src: url("font/NotoSansCJKkr-Regular.otf") format("opentype");
 }
-
 @font-face {
     font-family: 'NotoSansCJKkr-DemiLight';
     src: url("font/NotoSansCJKkr-DemiLight.otf") format("opentype");
 }
-
 @font-face {
     font-family: 'arial';
     src: url("font/arial.ttf") format("truetype");
 }
-
 @font-face {
     font-family: 'NotoSerifCJKkr-Regular';
     src: url("font/NotoSerifCJKkr-Regular.otf") format("opentype");
 }
-
 
 * {
     margin: 0;
@@ -27,19 +23,10 @@
     color: #292929;
 }
 
-body {
-    background-color: #ffffff;
-    overflow-x: hidden;
-}
-
-ul {
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-    display: block;
-}
+body {background-color: #ffffff; overflow-x: hidden;}
+ul {list-style: none;}
+a {text-decoration: none; display: block;}
+#wrap {width: 100%;}
 
 .inner {
     width: 1600px;
@@ -53,14 +40,8 @@ a {
     overflow: hidden;
 }
 
-#wrap {
-    width: 100%;
-}
 
-
-
-
-/* 상단 고정 메뉴 */
+/*                 상단 고정 메뉴                  */
 #header {
     width: 100%;
     height: 80px;
@@ -98,6 +79,8 @@ a {
     /* 80px */
     margin-top: 21px;
     /*1.25 %*/
+    position: relative;
+    z-index: 2;
 }
 
 .menu {
@@ -141,6 +124,11 @@ a {
     clear: both;
 }
 
+.btn_log{
+    position: relative;
+    z-index: 2;
+}
+
 .btn_log > a {
     float: left;
     width: 29%;
@@ -161,6 +149,11 @@ a {
     transition: all 0.4s;
 }
 
+.btn_do{
+    position: relative;
+    z-index: 2;
+}
+
 .btn_do > a {
     float: right;
     width: 70%;
@@ -177,7 +170,7 @@ a {
     background-color: #405369;
 }
 
-/* 서브메뉴 */
+/*                 서브메뉴:마우스오버                  */
 .submenu{
     display: none;
     position: absolute;
@@ -212,9 +205,7 @@ a {
 }
 
 
-
-
-/* 모바일 메뉴 */
+/*                 모바일 메뉴                  */
 .icon_menu {
     display: none;
 }
@@ -224,7 +215,7 @@ a {
 }
 
 
-/* 메인이미지 슬라이드 */
+/*                 메인이미지 슬라이드                  */
 #mainimg {
     width: 100%;
     height: 937px;
@@ -278,9 +269,8 @@ a {
 }
 
 
-
 /* 콘텐츠 */
-/* 01 굿스토리 */
+/*                 01 굿스토리                  */
 .story {
     width: 100%;
     margin-top: 200px;
@@ -323,6 +313,7 @@ a {
     transform: scale(1.1);
 }
 
+/*
 .story_title > .slide_btn {
     position: absolute;
     width: 100px;
@@ -350,6 +341,7 @@ a {
 .story_title > .slide_btn > a > img {
     margin-top: 33%;
 }
+*/
 
 .story_box {
     float: right;
@@ -407,8 +399,7 @@ a {
 }
 
 
-
-/* 02 인증마크 */
+/*                 02 인증마크                  */
 .goodintro {
     width: 100%;
     height: 756px;
@@ -507,7 +498,7 @@ a {
 }
 
 
-/* 03 나눔영상 */
+/*                 03 나눔영상                  */
 .vodbox {
     width: 100%;
     height: 710px;
@@ -547,8 +538,7 @@ a {
 }
 
 
-
-/* 나눔영상 슬라이드 부분 */
+/*                 나눔영상_슬라이드                  */
 div#tmpSlideshow {
     margin-top: 70px;
     position: relative;
@@ -564,6 +554,7 @@ div.tmpSlide {
     height: 568px;
     display: none;
 }
+
 div.tmpSlide iframe {
     float: left;
     width: 70%;
@@ -629,8 +620,7 @@ div.tmpSlideCopy .mo_p{
 }
 
 
-
-/* 04 후원 */
+/*                 04 후원                  */
 .charity {
     width: 100%;
     height: 934px;
@@ -738,7 +728,7 @@ div.tmpSlideCopy .mo_p{
 }
 
 
-/* 05 캠페인 */
+/*                 05 캠페인                  */
 .campaign {
     width: 100%;
     height: 680px;
@@ -835,13 +825,13 @@ div.tmpSlideCopy .mo_p{
 }
 
 
-/* 하단영역 */
+/*                 하단                  */
 #footer {
     margin-top: 100px;
     width: 100%;
 }
 
-/* 하단 - 위쪽 */
+/*                 TOP footer                  */
 .top_footer {
     width: 100%;
     height: 87px;
@@ -912,7 +902,7 @@ div.tmpSlideCopy .mo_p{
 }
 
 
-/* 하단 - 아래쪽 */
+/*                 bottom footer                  */
 .bottom_footer {
     width: 100%;
     height: 145px;
@@ -1036,9 +1026,7 @@ div.tmpSlideCopy .mo_p{
 }
 
 
-
-
-/* 미디어쿼리 */
+/*                 미디어쿼리                 */
 @media (max-width:1599px) {
     .inner {
         width: 95%;
@@ -1114,6 +1102,7 @@ div.tmpSlideCopy .mo_p{
     div.tmpSlideCopy {
         right: 0;
     }
+    
     .char_box > ul > li > a {
         padding-top: 15%;
     }
@@ -1154,9 +1143,11 @@ div.tmpSlideCopy .mo_p{
     .menu > ul {
         line-height: 60px;
     }
+    
     .menu > ul > li{
         padding: 0 14px;
     }
+    
     .menu > ul > li > a {
         font-size: 1.5rem;
         line-height: 60px;
@@ -1253,6 +1244,7 @@ div.tmpSlideCopy .mo_p{
     div.tmpSlideCopy .pc_p {
         display: none;
     }
+    
     div.tmpSlideCopy {
         width: 200px;
         right: 0;
@@ -1299,6 +1291,7 @@ div.tmpSlideCopy .mo_p{
 
     .char_box > ul > li > a > h4 > span {
         font-size: 2rem;
+        letter-spacing: -2px;
     }
 
     .cam_title > h2 {
@@ -1341,7 +1334,7 @@ div.tmpSlideCopy .mo_p{
         display: none;
     }
 
-    /* 모바일 메뉴 버튼 */
+    /*                 모바일 메뉴 버튼                  */
     .icon_menu {
         display: block;
         width: 60px;
@@ -1483,9 +1476,10 @@ div.tmpSlideCopy .mo_p{
         margin-top: 10px;
     }
 
+    /*
     .story_title > .slide_btn {
         display: none;
-    }
+    }*/
 
     .story_box {
         width: 100%;
@@ -1597,8 +1591,7 @@ div.tmpSlideCopy .mo_p{
     }
     
     .pc_vod_title {
-        display: none;
-        
+        display: none;        
     }
 
     .mo_vod_title {
@@ -1615,7 +1608,7 @@ div.tmpSlideCopy .mo_p{
         margin-top: 15px;
     }
 
-/*    나눔영상 슬라이드 부분*/
+    /*                 나눔영상 슬라이드                  */
     div.tmpSlide iframe  {
         width: 100%;
         margin-right: 0;
@@ -1634,15 +1627,14 @@ div.tmpSlideCopy .mo_p{
     div#tmpSlideshow h3 {
         display: none;
     }
+    
     div.tmpSlideCopy > .mo_p {
         text-align: left;
     }
-
     
     .charity {
         background-image: url(../img/mo768_charitybg.jpg);
         height: 1008px;
-
         /*        padding-top: calc(1008/768*100%);*/
         /*        position: relative;*/
     }
@@ -1848,12 +1840,21 @@ div.tmpSlideCopy .mo_p{
 
 
 @media (max-width:500px) {
+    .inner {
+        width: 90%;
+    }
+    
     .story {
         padding-bottom: calc(540/500*100%);
     }
 
     .story_title > h2 {
         font-size: 2.8rem;
+    }
+    
+    .goodintro > .inner{
+        left: 0;
+        right: 0;
     }
 
     .goodintro > .inner > h2 {
@@ -1921,13 +1922,12 @@ div.tmpSlideCopy .mo_p{
         top: 30%;
     }
 
-
-
     .campaign {
         margin-top: 80px;
         padding-bottom: calc(570/500*100%);
     }
-
+    
+        
     .top_footer > .inner > ul > li:last-child {
         display: none;
     }

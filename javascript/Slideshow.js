@@ -45,7 +45,7 @@ $$.extend({
       this.Last = this.Counter - 1;
 
       if (this.Last < 1) {
-        this.Last = 3;
+        this.Last = 2;
       }
 
       $('div#tmpSlide-' + this.Last).fadeOut(
@@ -57,11 +57,11 @@ $$.extend({
 
           $$.Slideshow.Counter++;
 
-          if ($$.Slideshow.Counter > 3) {
+          if ($$.Slideshow.Counter > 2) {
             $$.Slideshow.Counter = 1;
           }
 
-          setTimeout('$$.Slideshow.Transition();', 5000);
+          setTimeout('$$.Slideshow.Transition();', 15000);
         }
       );
     }
